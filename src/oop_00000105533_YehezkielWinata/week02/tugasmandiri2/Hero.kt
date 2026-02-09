@@ -12,4 +12,8 @@ class Hero (var Name: String, var hp: Int = 100, var baseDamage: Int){
             hp - damage
         }
     }
+
+    fun isAlive(): Boolean{
+        return hp > 0
+    }
 }
