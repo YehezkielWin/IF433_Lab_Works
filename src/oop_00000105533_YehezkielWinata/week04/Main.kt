@@ -11,4 +11,10 @@ fun main(){
     myCar.openTrunk()
     myCar.honk()
     myCar.accelerate()
+
+    val mobillistrik = ElectricCar("Tesla",4,50)
+    mobillistrik.accelerate()
+    mobillistrik.honk()
+    mobillistrik.openTrunk()
+
 }
