@@ -10,6 +10,10 @@ fun Main(){
 
     for(Metod in Metode){
         Metod.processPayment(75000.0)
+        if (Metod is EWallet){
+            Metod.topUp(50000.0)
+            Metod.processPayment(75000.0)
+        }
     }
 
 }
