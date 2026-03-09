@@ -1,0 +1,7 @@
+interface BluetoothConnectable {
+    fun connectToBluetooth()
+}
+
+interface Rechargeable {
+    fun chargeBattery()
+}
