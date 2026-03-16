@@ -1,0 +1,1 @@
+class RegulerUser(val name: String, val age: Int)
