@@ -15,3 +15,11 @@ val data3 = data1.copy(age = 23)
 
 val (userName, userAge) = data1 
     println("Destructured: Name = $userName, Age = $userAge")
+
+println("\n=== TEST SEALED CLASS ===")
+val response: ApiResponse = ApiResponse.Success("Data berhasil ditarik!")
+
+val uiMessage = when (response) {
+    is ApiResponse.Success -> "Tampilkan: ${response.data}"
+    is ApiResponse.Error -> "Munculkan alert: ${response.message}"
+}
