@@ -1,33 +1,46 @@
-fun parseProduct(rawJson: Map<String, Any?>): Product? {
-    val id = requireNotNull(rawJson["id"] as? String) {
-        "API Invalid: Missing ID"
-    }
+import oop_00000105533_YehezkielWinata.week08.TugasMandiri.JavaPaymentService
+class ApiParser {
 
-    val name = requireNotNull(rawJson["name"] as? String) {
-        "API Invalid: Missing Name"
-    }
-
-    val type = rawJson["type"] as? String
-
-    return when (type) {
-        "ELECTRONIC" -> {
-            val warranty = rawJson["warranty"] as? Int ?: 12
-            Electronic(id, name, warranty)
+    fun parseProduct(rawJson: Map<String, Any?>): Product? {
+        val id = requireNotNull(rawJson["id"] as? String) {
+            "API Invalid: Missing ID"
         }
-        "CLOTHING" -> {
-            val size = rawJson["size"] as? String ?: "All Size"
-            Clothing(id, name, size)
-        }
-        else -> null
-    }
-}
 
-fun checkout(product: Product) {
+        val name = requireNotNull(rawJson["name"] as? String) {
+            "API Invalid: Missing Name"
+        }
+
+        val type = rawJson["type"] as? String
+
+        return when (type) {
+            "ELECTRONIC" -> {
+                val warranty = rawJson["warranty"] as? Int ?: 12
+                Electronic(id, name, warranty)
+            }
+            "CLOTHING" -> {
+                val size = rawJson["size"] as? String ?: "All Size"
+                Clothing(id, name, size)
+            }
+            else -> null
+        }
+    }
+
+    fun checkout(product: Product) {
     val id = when (product) {
         is Electronic -> product.id
         is Clothing -> product.id
     }
 
+    when (product) {
+        is Electronic -> {
+            println("${product.name} (Warranty ${product.warrantyMonths})")
+        }
+        is Clothing -> {
+            println("${product.name} (Size ${product.size})")
+        }
+    }
+
     val transactionId = JavaPaymentService.processPayment(id)!!
     println(transactionId)
+}
 }
