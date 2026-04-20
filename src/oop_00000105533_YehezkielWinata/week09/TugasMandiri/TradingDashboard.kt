@@ -26,7 +26,12 @@ fun main(){
     println("\n=== Pipeline 4 ===")
     val topPerformersString = winningTrades.sortedByDescending { it.roe }
         .map { "WIN [${it.pair} - ${it.position}]: +${it.roe}% ROE (Lev: ${it.leverage}x)" }
-    
     println("Top Performers:")
     topPerformersString.forEach { println(it) }
+
+    println("\n=== Pipeline 5 ===")
+    val worstPerformersString = losingTrades.sortedBy { it.roe }
+        .map { "LOSS [${it.pair} - ${it.position}]: ${it.roe}% ROE (Lev: ${it.leverage}x)" }
+    println("Worst Performers:")
+    worstPerformersString.forEach { println(it) }
 }
