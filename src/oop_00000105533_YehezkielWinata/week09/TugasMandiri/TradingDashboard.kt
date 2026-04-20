@@ -17,4 +17,11 @@ fun main(){
     val winningTrades = closedTrades.filter{ it.roe > 0} 
     println("Winning Trades:") 
     winningTrades.forEach { println(it) }
+
+    println("\n=== Pipeline 3 ===")
+    val losingTrades = closedTrades.filter{ it.roe <= 0}
+    println("Losing Trades:")
+    losingTrades.forEach { println(it) }
+
+    
 }
