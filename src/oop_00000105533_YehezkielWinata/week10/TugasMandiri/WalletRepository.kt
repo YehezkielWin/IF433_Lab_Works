@@ -1,4 +1,8 @@
-class WalletRepository<T> {
+interface NamedEntity {
+    val name: String
+}
+
+class WalletRepository<T : NamedEntity> {
     private val items = mutableListOf<T>()
 
     fun add(item: T) {
@@ -9,7 +13,7 @@ class WalletRepository<T> {
         return items
     }
 
-    fun findByName(predicate: (T) -> Boolean): T? {
-        return items.find(predicate)
+    fun findByName(query: String): T? {
+        return items.find { it.name.equals(query, ignoreCase = true) }
     }
 }
