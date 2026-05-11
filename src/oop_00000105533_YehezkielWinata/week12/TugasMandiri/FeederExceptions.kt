@@ -1,0 +1,1 @@
+sealed class FeederException(msg: String) : Exception(msg)
