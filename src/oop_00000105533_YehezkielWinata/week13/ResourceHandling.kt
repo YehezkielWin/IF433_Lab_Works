@@ -27,4 +27,13 @@ fun main() {
         }
     }
     println("100 baris log berhasil di-generate dengan sangat aman.")
-}
+
+    println("\n=== TEST BUFFERED READER ===")
+    // Membaca stream tanpa me-load seluruh file ke RAM sekaligus
+    safeFile.bufferedReader().use { reader ->
+        // Menggunakan sequence untuk mengambil 5 baris pertama saja secara malas (lazy evaluation)
+        reader.lineSequence().take(5).forEach { line ->
+            println("Stream Read: $line")
+        }
+    } // File otomatis di-close di sini!
+} 
